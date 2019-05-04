@@ -1,0 +1,17 @@
+I-V Characteristics of BC547
+*Including the BC547 model file
+.include bc547.txt
+vin 1 0 dc 5v
+r1 1 2 470
+*Voltage source of 0 V to measure current
+vib 2 3 dc 0v
+*Specifying BJTs in this manner
+*name collector base emitter modelname as in model file
+q1 4 3 0 bc547a
+*Vin for DC analysis
+.dc vin -3 3 0.01
+.control
+run
+plot vib#branch vs v(3)
+.endc
+.end
