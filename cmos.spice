@@ -1,0 +1,22 @@
+CMOS inverter
+
+.include ./bsim4soi/nmos4p0.mod
+.include ./bsim4soi/pmos4p0.mod
+.option TEMP=27C
+
+Vpower VD 0 1.5
+Vgnd VS 0 0
+
+Vgate Ein VS PULSE(0 1.5 100p 50p 50p 200p 500p)
+
+MN0 Aus Ein VS VS N1 W=10u L=0.18u
+MP0 Aus Ein VD VS P1 W=20u L=0.18u
+
+.tran 3p 600ps
+
+.control
+ run
+ plot Ein Aus
+.endc
+
+.END
